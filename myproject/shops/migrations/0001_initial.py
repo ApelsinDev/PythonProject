@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -24,7 +23,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
-                ('city', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='streets', to='shops.city')),
+                ('city', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='streets',
+                                           to='shops.city')),
             ],
         ),
         migrations.CreateModel(
@@ -35,8 +35,10 @@ class Migration(migrations.Migration):
                 ('building', models.CharField(max_length=10)),
                 ('opening_time', models.TimeField()),
                 ('closing_time', models.TimeField()),
-                ('city', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='shops', to='shops.city')),
-                ('street', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='shops', to='shops.street')),
+                ('city',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='shops', to='shops.city')),
+                ('street', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='shops',
+                                             to='shops.street')),
             ],
         ),
     ]

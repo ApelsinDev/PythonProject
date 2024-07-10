@@ -1,12 +1,15 @@
 from rest_framework import viewsets, status
-from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.response import Response
+
 from .models import City, Street, Shop
 from .serializers import CitySerializer, StreetSerializer, ShopSerializer
+
 
 class CityViewSet(viewsets.ModelViewSet):
     queryset = City.objects.all()
     serializer_class = CitySerializer
+
 
 class StreetViewSet(viewsets.ModelViewSet):
     queryset = Street.objects.all()
@@ -17,6 +20,7 @@ class StreetViewSet(viewsets.ModelViewSet):
         if city_id:
             return self.queryset.filter(city_id=city_id)
         return self.queryset
+
 
 class ShopViewSet(viewsets.ModelViewSet):
     queryset = Shop.objects.all()
@@ -45,5 +49,6 @@ class ShopViewSet(viewsets.ModelViewSet):
             if open_param == '1':
                 queryset = queryset.filter(opening_time__lte=current_time, closing_time__gte=current_time)
             else:
-                queryset = queryset.filter(opening_time__gt=current_time) | queryset.filter(closing_time__lt=current_time)
+                queryset = queryset.filter(opening_time__gt=current_time) | queryset.filter(
+                    closing_time__lt=current_time)
         return Response(self.serializer_class(queryset, many=True).data)

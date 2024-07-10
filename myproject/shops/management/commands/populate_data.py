@@ -1,6 +1,8 @@
+from datetime import time
+
 from django.core.management.base import BaseCommand
 from shops.models import City, Street, Shop  # Убедитесь, что этот путь правильный
-from datetime import time
+
 
 class Command(BaseCommand):
     help = 'Populate database with initial data'
@@ -19,9 +21,12 @@ class Command(BaseCommand):
         ]
 
         shops = [
-            {"name": "Магазин 1", "city_name": "Москва", "street_name": "Тверская", "building": "1", "opening_time": time(9, 0), "closing_time": time(21, 0)},
-            {"name": "Магазин 2", "city_name": "Санкт-Петербург", "street_name": "Невский проспект", "building": "2", "opening_time": time(10, 0), "closing_time": time(22, 0)},
-            {"name": "Магазин 3", "city_name": "Новосибирск", "street_name": "Красный проспект", "building": "3", "opening_time": time(8, 0), "closing_time": time(20, 0)}
+            {"name": "Магазин 1", "city_name": "Москва", "street_name": "Тверская", "building": "1",
+             "opening_time": time(9, 0), "closing_time": time(21, 0)},
+            {"name": "Магазин 2", "city_name": "Санкт-Петербург", "street_name": "Невский проспект", "building": "2",
+             "opening_time": time(10, 0), "closing_time": time(22, 0)},
+            {"name": "Магазин 3", "city_name": "Новосибирск", "street_name": "Красный проспект", "building": "3",
+             "opening_time": time(8, 0), "closing_time": time(20, 0)}
         ]
 
         for city_data in cities:
